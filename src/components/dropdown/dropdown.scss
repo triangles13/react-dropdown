@@ -1,0 +1,103 @@
+$main-color: #202124;
+$active-color: #E6E6FA;
+$background-color: #FFF;
+$gap: 6px;
+
+.dropdown {
+  $dropdown: &;
+
+  position: relative;
+  z-index: 1;
+  color: $main-color;
+
+  &__value {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid $main-color;
+    gap: 4px;
+    background-color: $background-color;
+    padding: $gap 0 $gap $gap;
+  }
+
+  &__value-item {
+    padding: 4px 4px 4px 10px;
+    border-radius: 4px;
+    background-color: rgba($active-color, .4);
+    display: flex;
+    align-items: center;
+    gap: $gap;
+    font-size: 14px;
+  }
+
+  &__value-delete {
+    font-family: 'Material Icons';
+    font-size: 12px;
+    user-select: none;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 2px;
+    background-color: $background-color;
+    transition: .2s;
+
+    &:hover {
+      background-color: darken($active-color, 80%);
+      color: $background-color;
+    }
+  }
+
+  &__field {
+    flex-grow: 1;
+    appearance: none;
+    padding: 0 0 0 $gap*1.5;
+    margin: -1*$gap 0 -1*$gap -1*$gap;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    height: 38px;
+  }
+
+  &__list {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(100%);
+    box-shadow: 0 0 8px rgba($main-color, .1);
+    background-color: #FFF;
+    max-height: 240px;
+    overflow: auto;
+  }
+
+  &__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    svg circle {
+      stroke: darken($active-color, 40%);
+    }
+  }
+
+  &#{$dropdown}_active {
+    z-index: 2;
+  }
+}
+
+.dropdown-item {
+  $item: &;
+
+  cursor: pointer;
+  user-select: none;
+  padding: 10px 18px;
+  font-size: 14px;
+
+  &#{$item}_hovered {
+    background-color: rgba($active-color, .4);
+    outline: 1px solid darken($active-color, 20%);
+  }
+
+  &#{$item}_selected {
+    background-color: $active-color;
+  }
+}
